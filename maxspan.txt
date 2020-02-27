@@ -1,0 +1,143 @@
+Private Sub CommandButton1_Click()
+    Dim table_Data As Variant
+    Dim table As ListObject
+    Dim i As Integer
+    Dim x As Integer
+    Dim resumen As Worksheet
+    Dim motor_Calculo As Worksheet
+    Dim cell_Range As Range
+
+    
+    Set resumen = Worksheets("Resumen vano viento")
+    Set motor_Calculo = Worksheets("Calculos vano viento")
+    
+    Set table = resumen.ListObjects("tabla_resumen")
+    table_Data = table.DataBodyRange
+    
+    Set cell_Range = Range("tabla_resumen")
+    
+    
+    If resumen.Range("inputTerna") = "UNO" Then
+        If CheckBox1 Then
+            For i = 1 To UBound(table_Data)
+                motor_Calculo.Range("tipoPoste").Value = table_Data(i, 3)
+                motor_Calculo.Range("alturaPoste").Value = table_Data(i, 4)
+                motor_Calculo.Range("clasePoste").Value = table_Data(i, 5)
+                motor_Calculo.Range("distrito").Value = resumen.Range("inputDistrito")
+                motor_Calculo.Range("grado").Value = resumen.Range("inputGrado")
+                motor_Calculo.Range("terna1").Value = table_Data(i, 6)
+                motor_Calculo.Range("terna2").Value = "-"
+                motor_Calculo.Range("tipoTerna").Value = resumen.Range("inputTerna")
+                motor_Calculo.Range("guarda").Value = resumen.Range("inputGuarda")
+                motor_Calculo.Range("estructura").Value = table_Data(i, 2)
+                motor_Calculo.Range("angulo").Value = table_Data(i, 8)
+                cell_Range.Cells(i, 9).Value = motor_Calculo.Range("vano").Value
+                motor_Calculo.Range("caso").Value = "Caso " + CStr(table_Data(i, 1)) + ": " + "Estructura " + table_Data(i, 2) + " con poste de " + CStr(table_Data(i, 4)) + " pies y clase " + CStr(table_Data(i, 5))
+                If i = 1 Then
+                    motor_Calculo.Copy
+                    ActiveWorkbook.Worksheets("Calculos vano viento").Name = "Caso" + CStr(table_Data(i, 1))
+                Else
+                    motor_Calculo.Copy After:=Worksheets("Caso" + CStr(table_Data(i, 1) - 1))
+                    ActiveWorkbook.Worksheets("Calculos vano viento").Name = "Caso" + CStr(table_Data(i, 1))
+                End If
+            Next i
+        Else
+            For i = 1 To UBound(table_Data)
+                motor_Calculo.Range("tipoPoste").Value = table_Data(i, 3)
+                motor_Calculo.Range("alturaPoste").Value = table_Data(i, 4)
+                motor_Calculo.Range("clasePoste").Value = table_Data(i, 5)
+                motor_Calculo.Range("distrito").Value = resumen.Range("inputDistrito")
+                motor_Calculo.Range("grado").Value = resumen.Range("inputGrado")
+                motor_Calculo.Range("terna1").Value = table_Data(i, 6)
+                motor_Calculo.Range("terna2").Value = "-"
+                motor_Calculo.Range("tipoTerna").Value = resumen.Range("inputTerna")
+                motor_Calculo.Range("guarda").Value = resumen.Range("inputGuarda")
+                motor_Calculo.Range("estructura").Value = table_Data(i, 2)
+                motor_Calculo.Range("angulo").Value = table_Data(i, 8)
+                cell_Range.Cells(i, 9).Value = motor_Calculo.Range("vano").Value
+                motor_Calculo.Range("caso").Value = "Caso " + CStr(table_Data(i, 1)) + ": " + "Estructura " + table_Data(i, 2) + " con poste de " + CStr(table_Data(i, 4)) + " pies y clase " + CStr(table_Data(i, 5))
+            Next i
+        End If
+    Else
+        If CheckBox1 Then
+            For i = 1 To UBound(table_Data)
+                motor_Calculo.Range("tipoTerna").Value = resumen.Range("inputTerna")
+                motor_Calculo.Range("tipoPoste").Value = table_Data(i, 3)
+                motor_Calculo.Range("alturaPoste").Value = table_Data(i, 4)
+                motor_Calculo.Range("clasePoste").Value = table_Data(i, 5)
+                motor_Calculo.Range("distrito").Value = resumen.Range("inputDistrito")
+                motor_Calculo.Range("grado").Value = resumen.Range("inputGrado")
+                motor_Calculo.Range("terna1").Value = table_Data(i, 6)
+                motor_Calculo.Range("terna2").Value = table_Data(i, 7)
+                motor_Calculo.Range("guarda").Value = resumen.Range("inputGuarda")
+                motor_Calculo.Range("estructura").Value = table_Data(i, 2)
+                motor_Calculo.Range("angulo").Value = table_Data(i, 8)
+                cell_Range.Cells(i, 9).Value = motor_Calculo.Range("vano").Value
+                motor_Calculo.Range("caso").Value = "Caso " + CStr(table_Data(i, 1)) + ": " + "Estructura " + table_Data(i, 2) + " con poste de " + CStr(table_Data(i, 4)) + " pies y clase " + CStr(table_Data(i, 5))
+                If i = 1 Then
+                    motor_Calculo.Copy
+                    ActiveWorkbook.Worksheets("Calculos vano viento").Name = "Caso" + CStr(table_Data(i, 1))
+                Else
+                    motor_Calculo.Copy After:=Worksheets("Caso" + CStr(table_Data(i, 1) - 1))
+                    ActiveWorkbook.Worksheets("Calculos vano viento").Name = "Caso" + CStr(table_Data(i, 1))
+                End If
+            Next i
+        Else
+            For i = 1 To UBound(table_Data)
+                motor_Calculo.Range("tipoTerna").Value = resumen.Range("inputTerna")
+                motor_Calculo.Range("tipoPoste").Value = table_Data(i, 3)
+                motor_Calculo.Range("alturaPoste").Value = table_Data(i, 4)
+                motor_Calculo.Range("clasePoste").Value = table_Data(i, 5)
+                motor_Calculo.Range("distrito").Value = resumen.Range("inputDistrito")
+                motor_Calculo.Range("grado").Value = resumen.Range("inputGrado")
+                motor_Calculo.Range("terna1").Value = table_Data(i, 6)
+                motor_Calculo.Range("terna2").Value = table_Data(i, 7)
+                motor_Calculo.Range("guarda").Value = resumen.Range("inputGuarda")
+                motor_Calculo.Range("estructura").Value = table_Data(i, 2)
+                motor_Calculo.Range("angulo").Value = table_Data(i, 8)
+                cell_Range.Cells(i, 9).Value = motor_Calculo.Range("vano").Value
+                motor_Calculo.Range("caso").Value = "Caso " + CStr(table_Data(i, 1)) + ": " + "Estructura " + table_Data(i, 2) + " con poste de " + CStr(table_Data(i, 4)) + " pies y clase " + CStr(table_Data(i, 5))
+            Next i
+        End If
+    End If
+End Sub
+
+Private Sub Worksheet_Change(ByVal Target As Range)
+    Dim KeyCells As Range
+    Dim cell_Range As Range
+    Dim table_Data As Variant
+    Dim table As ListObject
+    Dim resumen As Worksheet
+    Dim i As Integer
+    
+
+    Set resumen = Worksheets("Resumen vano viento")
+    Set KeyCells = Range("inputTerna")
+    Set table = resumen.ListObjects("tabla_resumen")
+    Set cell_Range = Range("tabla_resumen")
+    
+    table_Data = table.DataBodyRange
+    
+    If Not Application.Intersect(KeyCells, Range(Target.Address)) _
+        Is Nothing Then
+            If Range("inputTerna") = "DOS" Then
+                For i = 1 To UBound(table_Data)
+                    cell_Range.Cells(i, 7).Value = "BITTERN"
+                    cell_Range.Cells(i, 2).Value = "ER"
+                    With cell_Range.Cells(i, 2).Validation
+                        .Delete
+                        .Add Type:=xlValidateList, Formula1:="A,ER"
+                    End With
+                Next
+            Else
+                For i = 1 To UBound(table_Data)
+                    cell_Range.Cells(i, 7).Value = "-"
+                    cell_Range.Cells(i, 2).Value = "ER"
+                    With cell_Range.Cells(i, 2).Validation
+                        .Delete
+                        .Add Type:=xlValidateList, Formula1:="A,ER,TM,PI,H"
+                    End With
+                Next i
+            End If
+    End If
+End Sub
